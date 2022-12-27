@@ -50,3 +50,58 @@
 // § To calculate average of 3 values, add them all together and divide by 3
 // § To check if number A is at least double number B, check for A >= 2 * B.
 // Apply this to the team's average scores 😉
+
+// const averageScoreDolphins = (96 + 108 + 89) / 3
+// const averageScoreKoalas = (88 + 130 + 110) / 3
+
+// if (averageScoreDolphins > averageScoreKoalas && averageScoreDolphins >= 100) {
+//   console.log(
+//     `Dolphins won with ${Math.floor(averageScoreDolphins)} average score!`
+//   )
+// } else if (
+//   averageScoreKoalas > averageScoreDolphins &&
+//   averageScoreKoalas >= 100
+// ) {
+//   console.log(
+//     `Koalas won with ${Math.floor(averageScoreKoalas)} average score!`
+//   )
+// } else if (
+//   averageScoreDolphins === averageScoreKoalas &&
+//   averageScoreDolphins >= 100
+// ) {
+//   console.log(`There is a draw!`)
+// }
+
+const scoresDolphins = [44, 23, 71]
+const scoresKoalas = [65, 54, 49]
+
+const average = function (scores) {
+  return (
+    scores.reduce((acc, current) => {
+      return acc + current
+    }) / scores.length
+  )
+}
+
+console.log(average(scoresDolphins))
+console.log(average(scoresKoalas))
+
+function checkWinner(scoreOne, scoreTwo) {
+  scoreOne > 2 * scoreTwo
+    ? console.log(
+        `Dolphins won with ${average(scoresDolphins)} average points!`
+      )
+    : console.log(`Koalas won with ${average(scoresKoalas)} average points!`)
+}
+
+checkWinner(average(scoresDolphins), average(scoresKoalas))
+
+console.log(
+  `${
+    average(scoresKoalas) > average(scoresDolphins) ? "Koalas" : "Dolphins"
+  } won with ${
+    average(scoresKoalas) > average(scoresDolphins)
+      ? average(scoresKoalas)
+      : average(scoresDolphins)
+  } average points!`
+)
