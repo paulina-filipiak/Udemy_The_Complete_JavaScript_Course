@@ -126,16 +126,44 @@
 // values (so don't store the tip values in separate variables first, but right in the new
 // array) 😉
 
-const bills = []
-const calcTip = function (biilValue) {
-  const tip =
-    biilValue >= 50 && biilValue <= 300 ? 0.15 * biilValue : 0.2 * biilValue
-  bills.push(Math.floor(tip))
-  return tip
+// const bills = []
+// const calcTip = function (biilValue) {
+//   const tip =
+//     biilValue >= 50 && biilValue <= 300 ? 0.15 * biilValue : 0.2 * biilValue
+//   bills.push(Math.floor(tip))
+//   return tip
+// }
+
+// calcTip(125)
+// calcTip(555)
+// calcTip(144)
+
+// console.log(bills)
+
+// ///////////////////////////////////////
+// Object Methods
+
+const jonas = {
+  firstName: "Jonas",
+  lastName: "Schmedtmann",
+  birthYeah: 1991,
+  job: "teacher",
+  friends: ["Michael", "Peter", "Steven"],
+  hasDriversLicense: true,
+  calcAge: function () {
+    this.age = 2037 - this.birthYeah
+    return this.age
+  },
+  getSummary: function () {
+    return `${this.firstName} is a ${this.calcAge()}-year old ${
+      this.job
+    }, and has ${this.hasDriversLicense ? "a" : "no"} driver's license`
+  },
 }
 
-calcTip(125)
-calcTip(555)
-calcTip(144)
+console.log(jonas.getSummary())
 
-console.log(bills)
+// // Challenge
+// // "Jonas is a 46-year old teacher, and he has a driver's license"
+// console.log(jonas.getSummary());
+// */
