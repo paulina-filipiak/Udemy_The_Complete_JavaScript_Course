@@ -1,20 +1,47 @@
 'use strict';
-const userNumber = document.querySelector('.guess').value;
-const buttonCheck = document.querySelector('.btn check');
-const scorePrint = document.querySelector('.score');
-const highscorePrint = document.querySelector('.highscore');
+const userNumber = document.querySelector('.guess');
+const buttonCheck = document.querySelector('.check');
+let scorePrintValue = document.querySelector('.score');
+let highscorePrintValue = document.querySelector('.highscore');
 const printChosenNumber = document.querySelector('.number');
 const message = document.querySelector('.message');
+let randomNumber = Math.floor(Math.random() * 20) + 1;
+let score = 20;
+// const printRandomNumber = function () {
+//   function innerFunction() {
+//     let min = Math.ceil(1);
+//     let max = Math.floor(20);
+//     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+//     return randomNumber;
+//   }
+//   return innerFunction();
+// };
 
-const printRandomNumber = function (min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  return randomNumber;
-};
+function startGame() {
+  scorePrintValue.textContent = `${20}`;
+  highscorePrintValue.textContent = '0';
+  message.value = 'Start guessing...';
+}
+startGame();
 
-console.log(printRandomNumber(1, 20));
-
+buttonCheck.addEventListener('click', function () {
+  console.log(randomNumber);
+  if (userNumber.valueAsNumber < randomNumber) {
+    score = score - 1;
+    scorePrintValue.textContent = `${score}`;
+    message.textContent = 'too low!';
+  }
+  if (userNumber.valueAsNumber > randomNumber) {
+    score = score - 1;
+    scorePrintValue.textContent = `${score}`;
+    message.textContent = 'too high!';
+  }
+  if (userNumber.valueAsNumber === randomNumber) {
+    highscorePrintValue.textContent = `${score}`;
+    message.textContent = 'Correct number!';
+    printChosenNumber.textContent = `${userNumber.valueAsNumber}`;
+  }
+});
 /* 1. podzielić grę na ruchy.
 jeden ruch kończy przycisniecie checkBtn
 na tym evencie porownujemy input do randomNumber
