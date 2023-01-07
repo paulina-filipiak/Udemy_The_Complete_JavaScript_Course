@@ -1,12 +1,14 @@
 'use strict';
 const userNumber = document.querySelector('.guess');
 const buttonCheck = document.querySelector('.check');
+const buttonAgain = document.querySelector('.again');
 let scorePrintValue = document.querySelector('.score');
 let highscorePrintValue = document.querySelector('.highscore');
 const printChosenNumber = document.querySelector('.number');
 const message = document.querySelector('.message');
-let randomNumber = Math.floor(Math.random() * 20) + 1;
+
 let score = 20;
+const highScore = [];
 // const printRandomNumber = function () {
 //   function innerFunction() {
 //     let min = Math.ceil(1);
@@ -17,32 +19,50 @@ let score = 20;
 //   return innerFunction();
 // };
 
+let randomNumber = Math.floor(Math.random() * 20) + 1;
+
 function startGame() {
-  scorePrintValue.textContent = `${20}`;
-  highscorePrintValue.textContent = '0';
+  scorePrintValue.textContent = `${score}`;
+  highscorePrintValue.textContent = `0`;
   message.value = 'Start guessing...';
+  document.body.style.backgroundColor = '#222';
+  printChosenNumber.textContent = `?`;
 }
 startGame();
+
+function again() {
+  score = 20;
+  randomNumber = Math.floor(Math.random() * 20) + 1;
+  scorePrintValue.textContent = `${score}`;
+  highscorePrintValue.textContent = `${Math.max(...highScore)}`;
+  message.value = 'Start guessing...';
+  document.body.style.backgroundColor = '#222';
+  printChosenNumber.textContent = `?`;
+}
 
 buttonCheck.addEventListener('click', function () {
   console.log(randomNumber);
   if (userNumber.valueAsNumber < randomNumber) {
     score = score - 1;
     scorePrintValue.textContent = `${score}`;
-    message.textContent = 'too low!';
+    message.textContent = '📉 too low!';
   }
   if (userNumber.valueAsNumber > randomNumber) {
     score = score - 1;
     scorePrintValue.textContent = `${score}`;
-    message.textContent = 'too high!';
+    message.textContent = '📈 too high!';
   }
   if (userNumber.valueAsNumber === randomNumber) {
+    highScore.push(score);
     highscorePrintValue.textContent = `${score}`;
-    message.textContent = 'Correct number!';
-    printChosenNumber.textContent = `${userNumber.valueAsNumber}
-    `;
+    message.textContent = '🎉 Correct number!';
+    printChosenNumber.textContent = `${userNumber.valueAsNumber}`;
     document.body.style.backgroundColor = '#60b347';
   }
+});
+
+buttonAgain.addEventListener('click', function () {
+  again();
 });
 /* 1. podzielić grę na ruchy.
 jeden ruch kończy przycisniecie checkBtn
