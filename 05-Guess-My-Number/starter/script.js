@@ -39,7 +39,9 @@ buttonCheck.addEventListener('click', function () {
   if (userNumber.valueAsNumber === randomNumber) {
     highscorePrintValue.textContent = `${score}`;
     message.textContent = 'Correct number!';
-    printChosenNumber.textContent = `${userNumber.valueAsNumber}`;
+    printChosenNumber.textContent = `${userNumber.valueAsNumber}
+    `;
+    document.body.style.backgroundColor = '#60b347';
   }
 });
 /* 1. podzielić grę na ruchy.
