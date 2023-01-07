@@ -52,6 +52,11 @@ buttonCheck.addEventListener('click', function () {
     scorePrintValue.textContent = `${score}`;
     message.textContent = '📈 too high!';
   }
+  if (userNumber.valueAsNumber !== randomNumber && score <= 0) {
+    score = score - 1;
+    scorePrintValue.textContent = `${score}`;
+    message.textContent = '💥 You lost the game!';
+  }
   if (userNumber.valueAsNumber === randomNumber) {
     highScore.push(score);
     highscorePrintValue.textContent = `${score}`;
