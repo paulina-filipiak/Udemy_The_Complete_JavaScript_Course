@@ -9,15 +9,6 @@ const message = document.querySelector('.message');
 
 let score = 20;
 const highScore = [];
-// const printRandomNumber = function () {
-//   function innerFunction() {
-//     let min = Math.ceil(1);
-//     let max = Math.floor(20);
-//     const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-//     return randomNumber;
-//   }
-//   return innerFunction();
-// };
 
 let randomNumber = Math.floor(Math.random() * 20) + 1;
 
@@ -42,15 +33,11 @@ function again() {
 
 buttonCheck.addEventListener('click', function () {
   console.log(randomNumber);
-  if (userNumber.valueAsNumber < randomNumber) {
+  if (userNumber.valueAsNumber !== randomNumber) {
     score = score - 1;
     scorePrintValue.textContent = `${score}`;
-    message.textContent = '📉 too low!';
-  }
-  if (userNumber.valueAsNumber > randomNumber) {
-    score = score - 1;
-    scorePrintValue.textContent = `${score}`;
-    message.textContent = '📈 too high!';
+    message.textContent =
+      userNumber.valueAsNumber < randomNumber ? '📉 too low!' : '📈 too high!';
   }
   if (userNumber.valueAsNumber !== randomNumber && score <= 0) {
     score = score - 1;
