@@ -10,3 +10,8 @@ showModalBtn.forEach(btn => {
     overlay.classList.remove('hidden');
   });
 });
+
+closeModalBtn.addEventListener('click', function () {
+  modal.classList.add('hidden');
+  overlay.classList.add('hidden');
+});
